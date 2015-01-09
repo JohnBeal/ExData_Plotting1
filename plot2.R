@@ -15,8 +15,9 @@ powerconsumption_subset<-transform(powerconsumption_subset,
 
 
 ## Plot time series line graph of Global active power to png graphics device
-png("plot2.png")
-with(powerconsumption_subset, plot(x = Time, y = Global_active_power, type = "n", xlab = "", 
+png("plot2.png")                                                                    ##Initialize png graphics device
+with(powerconsumption_subset, plot(x = Time, y = Global_active_power,               ##Initialize plot and labels
+                                   type = "n", xlab = "",           
                                    ylab ="Global Active Power (kilowatts)", ))
-with(powerconsumption_subset, lines(x = Time, y = Global_active_power))
-dev.off()
+with(powerconsumption_subset, lines(x = Time, y = Global_active_power))             ##Plot line for Global Active Power
+dev.off()                                                                           ##Close grahics device

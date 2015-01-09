@@ -12,8 +12,16 @@ powerconsumption_subset<-transform(powerconsumption_subset,
                                    Date = dmy(Date),
                                    Time = strptime(paste(as.character(Date), as.character(Time)), format = "%d/%m/%Y %H:%M:%S"))
 
-## Plot histogram of Global active power to png graphics device
-png("plot1.png")                                                                        ##Initialize png graphic device
-with(powerconsumption_subset, hist(Global_active_power, main = "Global Active Power",   ##Plot histogram and labels
-                                    xlab = "Global Active Power (kilowatts)", col = "red"))
+
+
+## Plot time series line graph of energy submetering to png graphics device
+png("plot3.png")                                                                        ##Initialize png graphic device
+with(powerconsumption_subset, plot(x = Time, y = Sub_metering_1, type = "n", xlab = "", 
+                                   ylab ="Energy sub metering", ))                      ##Initialize graph and labels
+
+with(powerconsumption_subset, lines(x = Time, y = Sub_metering_1, col ="black"))        ##Sequentially plot lines 
+with(powerconsumption_subset, lines(x = Time, y = Sub_metering_2, col ="red"))          ## for Sub_metering_1 - 3 
+with(powerconsumption_subset, lines(x = Time, y = Sub_metering_3, col ="blue"))
+legend("topright", lty = c(1,1,1), col=c("black", "red", "blue"), 
+       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))                ##Add legend to graph
 dev.off()                                                                               ##Close grahics device
