@@ -19,7 +19,7 @@ png("plot3.png")                                                                
 with(powerconsumption_subset, plot(x = Time, y = Sub_metering_1, type = "n", xlab = "", 
                                    ylab ="Energy sub metering", ))                      ##Initialize graph and labels
 
-with(powerconsumption_subset, lines(x = Time, y = Sub_metering_1, col ="black"))        ##Sequentially plot lines 
+with(powerconsumption_subset, lines(x = Time, y = Sub_metering_1, col ="black"))        ##Sequentially plot line graphs
 with(powerconsumption_subset, lines(x = Time, y = Sub_metering_2, col ="red"))          ## for Sub_metering_1 - 3 
 with(powerconsumption_subset, lines(x = Time, y = Sub_metering_3, col ="blue"))
 legend("topright", lty = c(1,1,1), col=c("black", "red", "blue"), 
