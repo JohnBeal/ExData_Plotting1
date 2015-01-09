@@ -6,7 +6,11 @@ class_list<-c(rep("character", times = 2), rep("numeric", times = 7 ))
 powerconsumption<-read.table("household_power_consumption.txt", header = TRUE, sep =";", 
                              na.strings = "?", colClasses = class_list)
 powerconsumption_subset<-filter(powerconsumption, dmy(Date)>=ymd(20070201), dmy(Date)<=ymd(20070202))
-powerconsumption_subset<-transform(powerconsumption_subset, Date = dmy(Date), Time = hms(Time))
+
+##Create amalgamated date and time column and transform Date to Date format and Time to POSIXlt format  
+powerconsumption_subset<-transform(powerconsumption_subset, 
+                                   Date = dmy(Date),
+                                   Time = strptime(paste(as.character(Date), as.character(Time)), format = "%d/%m/%Y %H:%M:%S"))
 
 ## Plot histogram of Global active power to png graphics device
 png("plot1.png")
